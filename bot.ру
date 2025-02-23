@@ -1,0 +1,19 @@
+from aiogram import Bot, Dispatcher, types
+from aiogram.utils import executor
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+import random
+import sqlite3
+import os
+
+# Настройки бота
+TOKEN = os.getenv("TELEGRAM_TOKEN")  # Получаем токен из переменной окружения
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
+
+# Подключение к базе данных
+conn = sqlite3.connect("users.db")
+cursor = conn.cursor()
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                   
